@@ -43,11 +43,17 @@ namespace GUI {
 
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Label^ label2;
+
+
+
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Precio;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+
+
+
 
 	private:
 		/// <summary>
@@ -69,10 +75,10 @@ namespace GUI {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -105,7 +111,10 @@ namespace GUI {
 			// 
 			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->AllowUserToDeleteRows = false;
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->AllowUserToResizeColumns = false;
+			this->dataGridView1->AllowUserToResizeRows = false;
+			this->dataGridView1->ColumnHeadersHeight = 30;
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->id, this->Nombre,
 					this->Precio
@@ -113,7 +122,8 @@ namespace GUI {
 			this->dataGridView1->Location = System::Drawing::Point(104, 340);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->RowHeadersWidth = 102;
+			this->dataGridView1->RowHeadersWidth = 30;
+			this->dataGridView1->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::DisableResizing;
 			this->dataGridView1->RowTemplate->Height = 40;
 			this->dataGridView1->Size = System::Drawing::Size(918, 149);
 			this->dataGridView1->TabIndex = 3;
@@ -143,30 +153,6 @@ namespace GUI {
 			this->button2->Text = L"Editar";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->MinimumWidth = 12;
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			this->id->Width = 250;
-			// 
-			// Nombre
-			// 
-			this->Nombre->HeaderText = L"Nombre";
-			this->Nombre->MinimumWidth = 12;
-			this->Nombre->Name = L"Nombre";
-			this->Nombre->ReadOnly = true;
-			this->Nombre->Width = 250;
-			// 
-			// Precio
-			// 
-			this->Precio->HeaderText = L"Precio";
-			this->Precio->MinimumWidth = 12;
-			this->Precio->Name = L"Precio";
-			this->Precio->ReadOnly = true;
-			this->Precio->Width = 250;
-			// 
 			// button3
 			// 
 			this->button3->Location = System::Drawing::Point(827, 232);
@@ -175,6 +161,33 @@ namespace GUI {
 			this->button3->TabIndex = 7;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->MinimumWidth = 12;
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->id->Width = 20;
+			// 
+			// Nombre
+			// 
+			this->Nombre->HeaderText = L"Nombre";
+			this->Nombre->MinimumWidth = 12;
+			this->Nombre->Name = L"Nombre";
+			this->Nombre->ReadOnly = true;
+			this->Nombre->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->Nombre->Width = 50;
+			// 
+			// Precio
+			// 
+			this->Precio->HeaderText = L"Precio";
+			this->Precio->MinimumWidth = 12;
+			this->Precio->Name = L"Precio";
+			this->Precio->ReadOnly = true;
+			this->Precio->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->Precio->Width = 50;
 			// 
 			// registros
 			// 

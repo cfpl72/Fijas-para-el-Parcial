@@ -1,5 +1,3 @@
 ﻿  registros.cpp
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
-  Generating Code...
   registros.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-LINK : fatal error LNK1561: entry point must be defined
+  GUI.vcxproj -> C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\x64\Debug\GUI.exe
