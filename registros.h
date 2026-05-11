@@ -8,7 +8,7 @@ namespace GUI {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace Model;
 	/// <summary>
 	/// Summary for registros
 	/// </summary>
@@ -72,13 +72,13 @@ namespace GUI {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Precio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -106,6 +106,7 @@ namespace GUI {
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Agregar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &registros::button1_Click);
 			// 
 			// dataGridView1
 			// 
@@ -125,42 +126,9 @@ namespace GUI {
 			this->dataGridView1->RowHeadersWidth = 30;
 			this->dataGridView1->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::DisableResizing;
 			this->dataGridView1->RowTemplate->Height = 40;
-			this->dataGridView1->Size = System::Drawing::Size(918, 149);
+			this->dataGridView1->Size = System::Drawing::Size(918, 366);
 			this->dataGridView1->TabIndex = 3;
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(446, 182);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(160, 38);
-			this->textBox2->TabIndex = 5;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(293, 185);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(238, 80);
-			this->label2->TabIndex = 4;
-			this->label2->Text = L"Precio";
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(827, 174);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(178, 52);
-			this->button2->TabIndex = 6;
-			this->button2->Text = L"Editar";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(827, 232);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(178, 52);
-			this->button3->TabIndex = 7;
-			this->button3->Text = L"Eliminar";
-			this->button3->UseVisualStyleBackColor = true;
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &registros::dataGridView1_CellClick);
 			// 
 			// id
 			// 
@@ -189,6 +157,40 @@ namespace GUI {
 			this->Precio->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			this->Precio->Width = 50;
 			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(446, 182);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(160, 38);
+			this->textBox2->TabIndex = 5;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(293, 185);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(95, 32);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"Precio";
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(827, 174);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(178, 52);
+			this->button2->TabIndex = 6;
+			this->button2->Text = L"Editar";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(827, 232);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(178, 52);
+			this->button3->TabIndex = 7;
+			this->button3->Text = L"Eliminar";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
 			// registros
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(16, 31);
@@ -210,5 +212,22 @@ namespace GUI {
 
 		}
 #pragma endregion
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		BrazoRobotico^ brazo = gcnew BrazoRobotico();
+		int numeroDeColumnas = dataGridView1->RowCount;
+		brazo->id = numeroDeColumnas + 1;
+		brazo->nombre = textBox1->Text;
+		brazo->precio = Convert::ToDouble(textBox2->Text);
+		dataGridView1->Rows->Add(brazo->id, brazo->nombre, brazo->precio);
+	}
+
+
+	private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (e->RowIndex >= 0) {
+			DataGridViewRow^ row = dataGridView1->Rows[e->RowIndex];
+			textBox1->Text = row->Cells["Nombre"]->Value->ToString();
+			textBox2->Text = row->Cells["Precio"]->Value->ToString();
+		}
+}
+};
 }
