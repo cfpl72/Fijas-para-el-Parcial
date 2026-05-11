@@ -9,6 +9,7 @@ namespace GUI {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace Model;
+	using namespace Controller;
 	/// <summary>
 	/// Summary for registros
 	/// </summary>
@@ -81,6 +82,7 @@ namespace GUI {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
+
 			// 
 			// label1
 			// 
@@ -129,6 +131,7 @@ namespace GUI {
 			this->dataGridView1->Size = System::Drawing::Size(918, 366);
 			this->dataGridView1->TabIndex = 3;
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &registros::dataGridView1_CellClick);
+			this->dataGridView1->CellEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &registros::dataGridView1_CellEnter);
 			// 
 			// id
 			// 
@@ -181,6 +184,7 @@ namespace GUI {
 			this->button2->TabIndex = 6;
 			this->button2->Text = L"Editar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &registros::button2_Click);
 			// 
 			// button3
 			// 
@@ -190,6 +194,7 @@ namespace GUI {
 			this->button3->TabIndex = 7;
 			this->button3->Text = L"Eliminar";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &registros::button3_Click);
 			// 
 			// registros
 			// 
@@ -209,25 +214,65 @@ namespace GUI {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			controller::Initialize();
+			this->update_grid_view();
 
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		
 		BrazoRobotico^ brazo = gcnew BrazoRobotico();
 		int numeroDeColumnas = dataGridView1->RowCount;
 		brazo->id = numeroDeColumnas + 1;
 		brazo->nombre = textBox1->Text;
 		brazo->precio = Convert::ToDouble(textBox2->Text);
-		dataGridView1->Rows->Add(brazo->id, brazo->nombre, brazo->precio);
+		textBox1->Text = "";
+		textBox2->Text = "";
+		controller::agregarBrazo(brazo);
+		update_grid_view();
 	}
+
+	private: System::Void update_grid_view() {
+		dataGridView1->Rows->Clear();
+		for(int i = 0; i < controller::brazosRoboticos->Count; i++) {
+			BrazoRobotico^ brazo = controller::brazosRoboticos[i];
+			dataGridView1->Rows->Add(brazo->id, brazo->nombre, brazo->precio);
+		}
+	}
+
+
 
 
 	private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		if (e->RowIndex >= 0) {
+			controller::brazoSeleccionado->id = Convert::ToInt32(dataGridView1->Rows[e->RowIndex]->Cells["id"]->Value);
 			DataGridViewRow^ row = dataGridView1->Rows[e->RowIndex];
 			textBox1->Text = row->Cells["Nombre"]->Value->ToString();
 			textBox2->Text = row->Cells["Precio"]->Value->ToString();
 		}
+}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		controller::eliminarBrazo(controller::brazoSeleccionado->id);
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		BrazoRobotico^ brazo = gcnew BrazoRobotico();
+		brazo->id = controller::brazoSeleccionado->id;
+		brazo->nombre = textBox1->Text;
+		brazo->precio = Convert::ToDouble(textBox2->Text);
+		controller::actualizarBrazo(brazo);
+		update_grid_view();
+	}
+private: System::Void dataGridView1_CellEnter(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	if (e->RowIndex >= 0) {
+		controller::brazoSeleccionado->id = Convert::ToInt32(dataGridView1->Rows[e->RowIndex]->Cells["id"]->Value);
+		DataGridViewRow^ row = dataGridView1->Rows[e->RowIndex];
+		textBox1->Text = row->Cells["Nombre"]->Value->ToString();
+		textBox2->Text = row->Cells["Precio"]->Value->ToString();
+	}
+	else {
+		textBox1->Text = "";
+		textBox2->Text = "";
+	}
 }
 };
 }

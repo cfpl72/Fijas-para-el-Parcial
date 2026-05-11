@@ -1,0 +1,2 @@
+C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\Persistance\x64\Debug\Persistance.vcxproj.AssemblyReference.cache
+C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\Persistance\x64\Debug\Persista.23B9BF9C.Up2Date

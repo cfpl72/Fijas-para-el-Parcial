@@ -1,5 +1,8 @@
+C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\x64\Debug\Persistance.dll
+C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\x64\Debug\Controller.pdb
+C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\x64\Debug\Model.pdb
+C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\x64\Debug\Persistance.pdb
 C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\GUI\x64\Debug\GUI.vcxproj.AssemblyReference.cache
 C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\GUI\x64\Debug\GUI.registros.resources
 C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\GUI\x64\Debug\GUI.vcxproj.GenerateResource.cache
-C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\x64\Debug\Model.pdb
 C:\Users\alexis-pc\OneDrive\Documentos\Universidad\Courses\Programacion_orientada_a_objetos\fijas-para-el-parcial\GUI\x64\Debug\GUI.vcxproj.Up2Date
